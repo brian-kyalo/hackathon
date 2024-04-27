@@ -14,6 +14,21 @@ class _TimmingPageState extends State<TimmingPage> {
   TextEditingController hourController = TextEditingController();
   TextEditingController minuteController = TextEditingController();
 
+//Creating a day time variable
+  DateTime _datetime = DateTime.now();
+  _showDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2028),
+    ).then((value) => {
+          setState(() {
+            _datetime = value!;
+          })
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +36,7 @@ class _TimmingPageState extends State<TimmingPage> {
       appBar: AppBar(
         elevation: 0,
         title: const Padding(
-          padding: EdgeInsets.only(left: 85.0),
+          padding: EdgeInsets.only(left: 200.0),
           child: Text("T I M E"),
         ),
         leading: IconButton(
@@ -34,6 +49,35 @@ class _TimmingPageState extends State<TimmingPage> {
       body: Center(
         child: Column(
           children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 15.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    _datetime.toString(),
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  MaterialButton(
+                    onPressed: _showDatePicker,
+                    color: Colors.blueGrey.shade600,
+                    child: const Padding(
+                      padding: EdgeInsets.all(18.0),
+                      child: Text(
+                        "Choose Date",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             // Lottie.asset(
             //   './assets/anim1',
             //   width: 100,
