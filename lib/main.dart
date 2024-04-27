@@ -1,5 +1,6 @@
 import 'package:farmer_task_management_app/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   //Using hive to locally store data in my app
@@ -12,10 +13,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: "My App",
+      theme: ThemeData(
+          textTheme: TextTheme(bodyMedium: GoogleFonts.permanentMarker())),
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }
